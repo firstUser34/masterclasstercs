@@ -30,10 +30,11 @@ for i in range(20):
     logfile.flush()
 
     process = subprocess.Popen(
-        ["python3", "ultimate_bot_tor.py", "--batch", "--headless", "--browser", "--tor"],
+        ["python3", "-u" , "ultimate_bot_tor.py", "--batch", "--headless", "--browser", "--tor"],
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
-        universal_newlines=True
+        universal_newlines=True,
+        bufsize=1
     )
 
     for line in iter(process.stdout.readline, ''):
