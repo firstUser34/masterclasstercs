@@ -1,0 +1,51 @@
+name: Run Ultimate Bot via Tor and Privoxy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-bot:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v4
+
+    - name: Install Tor, Privoxy, and Python Packages
+      run: |
+        sudo apt update
+        sudo apt install -y tor privoxy curl python3-pip
+
+    - name: Configure Privoxy
+      run: |
+        echo 'forward-socks5t / 127.0.0.1:9050 .' | sudo tee -a /etc/privoxy/config
+        sudo service privoxy restart
+
+    - name: Start Tor Service
+      run: |
+        sudo service tor start
+        sleep 5
+
+    - name: Check Tor+Privoxy Connectivity
+      run: |
+        echo "Testing Tor via Privoxy..."
+        if curl --proxy 127.0.0.1:8118 https://check.torproject.org | grep -q "Congratulations"; then
+          echo "✅ Tor+Privoxy working!"
+        else
+          echo "❌ Tor+Privoxy connection failed!"
+          exit 1
+        fi
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install Python Dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Run Tor-aware Python Bot Loop
+      run: |
+        sudo service tor restart
+        python3 run_bot_loop.py
