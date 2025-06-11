@@ -5,8 +5,8 @@ import subprocess
 # Open log file in append mode
 logfile = open("full_run_log.txt", "a")
 
-for i in range(20):
-    header = f"\n--- Run {i+1}/20 ---\n"
+for i in range(200):
+    header = f"\n--- Run {i+1}/200 ---\n"
     print(header)
     logfile.write(header)
     logfile.flush()
