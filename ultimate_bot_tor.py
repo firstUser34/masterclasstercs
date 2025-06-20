@@ -945,7 +945,7 @@ def process_multiple_urls(urls_list, browser_mode=False, extract_links=False, ex
     Process multiple URLs efficiently
     
     Usage:
-    urls = [ "https://x.com/Hitansh54/status/1931754193489957133", "https://x.com/Hitansh54/status/1931410374139777334", "https://x.com/Hitansh54/status/1931399970139296013"]
+    urls = [ "https://x.com/Hitansh54/status/1931754193489957133", "https://x.com/Hitansh54/status/1931754193489957133", "https://x.com/Hitansh54/status/1931754193489957133"]
     process_multiple_urls(urls, extract_links=True, save_pages=True)
     """
     results = []
@@ -988,9 +988,9 @@ def main():
     # Add your URLs to this list:
     urls_to_process = [
         "https://x.com/Hitansh54/status/1931754193489957133",
-         "https://x.com/Hitansh54/status/1931410374139777334",
-        "https://x.com/Hitansh54/status/1931399970139296013",
-        "https://x.com/Hitansh54/status/1930697596261060654",
+         "https://x.com/Hitansh54/status/1931754193489957133",
+        "https://x.com/Hitansh54/status/1931754193489957133",
+        "https://x.com/Hitansh54/status/1931754193489957133",
     ]
     # ===================================================
     
